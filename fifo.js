@@ -1,6 +1,24 @@
 var pagina = {
     xAA : ['A','A','A','A','A'],
-    xBB : ['B','B'],
+    xBB : ['A','A','A','A','A'], 
+    xCC : ['A','A','A','A','A'],
+    xDD : ['A','A','A','A','A'],
+    xEE : ['A','A','A','A','A'],
+    xFF : ['A','A','A','A','A'],
+    xGG : ['A','A','A','A','A'],
+    xHH : ['A','A','A','A','A'],
+    xII : ['A','A','A','A','A'],
+    xJJ : ['A','A','A','A','A'],
+    xKK : ['A','A','A','A','A'],
+    xLL : ['A','A','A','A','A'],
+    xMM : ['A','A','A','A','A'],
+    xNN : ['A','A'],
+    xOO : ['A','A'],
+}
+
+var m_pagina = {
+    xAA : [],
+    xBB : [],
     xCC : [],
     xDD : [],
     xEE : [],
@@ -14,8 +32,13 @@ var pagina = {
     xMM : [],
     xNN : [],
     xOO : [],
+
 }
 
+var puntero = {
+  x : 0,
+  y : 0 
+};
 
 //funcion para determinar cuantos espcaios puede ocupar 
 //por si misma
@@ -30,7 +53,6 @@ function fragmentar(tamaño){
     return 3;
   }
 }
-
 //esta funcion deja el fragmento sobrante cuando es 
 //mayor a 5
 function separar(fragmento,tamaño){
@@ -64,21 +86,36 @@ function new_push(tamaño){
       pagina[i][indice] = nombre;
        tamaño = tamaño - 1;
        indice = indice + 1;
+       //puntero.x = i;
+      // puntero.y = indice
       } 
     }
 }
 
+function obj_index(tamaño){
+  var cont = 0;
+  for (var i in pagina){
+    cont = cont + pagina[i].length;
+  }
+  
+  if((tamaño + cont) > 75){
+      return  "Stack Overflow" + cont;
+  }else{
+      return "Memory Disp" + cont ;
+  }
+}
 
-var tamaño = 15
+
+
+var tamaño = 6
 let nombre = "$$$";
 
+console.log(obj_index(tamaño));
 //console.table(pagina)
-
-
-var frag = fragmentar(tamaño);
-var sep = separar(frag,tamaño)
-new_push(tamaño);
-//obj_push_sep(tamaño,frag,sep);
-console.log(frag + " mas " + sep );
 //pagina.uno[1]= "uno";
+//console.log(frag + " mas " + sep );
+//var frag = fragmentar(tamaño);
+//var sep = separar(frag,tamaño)
+new_push(tamaño);
 console.table(pagina);
+console.table(puntero)
