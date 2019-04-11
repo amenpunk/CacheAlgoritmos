@@ -1,42 +1,41 @@
 var pagina = {
-    xAA : ['A','A','A','A','A'],
-    xBB : ['A','A','A','A','A'], 
-    xCC : ['A','A','A','A','A'],
-    xDD : ['A','A','A','A','A'],
-    xEE : ['A','A','A','A','A'],
-    xFF : ['A','A','A','A','A'],
-    xGG : ['A','A','A','A','A'],
-    xHH : ['A','A','A','A','A'],
-    xII : ['A','A','A','A','A'],
-    xJJ : ['A','A','A','A','A'],
-    xKK : ['A','A','A','A','A'],
-    xLL : ['A','A','A','A','A'],
-    xMM : ['A','A','A','A','A'],
-    xNN : ['A','A'],
-    xOO : ['A','A'],
+    f_xAA : ['A','A','A','A','A'],
+    f_xBB : ['A','A','A','A','A'], 
+    f_xCC : ['A','A','A','A','A'],
+    f_xDD : ['A','A','A','A','A'],
+    f_xEE : ['A','A','A','A','A'],
+    f_xFF : ['A','A','A','A','A'],
+    f_xGG : ['A','A','A','A','A'],
+    f_xHH : ['A','A','A','A','A'],
+    f_xII : ['A','A','A','A','A'],
+    f_xJJ : ['A','A','A','A','A'],
+    f_xKK : ['A','A','A','A','A'],
+    f_xLL : ['A','A','A','A','A'],
+    f_xMM : ['A','A','A','A','A'],
+    f_xNN : ['A','A','A','A','A'],
+    f_xOO : ['A','A','A','A','A'],
 }
 
 var m_pagina = {
-    xAA : [],
-    xBB : [],
-    xCC : [],
-    xDD : [],
-    xEE : [],
-    xFF : [],
-    xGG : [],
-    xHH : [],
-    xII : [],
-    xJJ : [],
-    xKK : [],
-    xLL : [],
-    xMM : [],
-    xNN : [],
-    xOO : [],
-
+    v_xAA : [],
+    v_xBB : [],
+    v_xCC : [],
+    v_xDD : [],
+    v_xEE : [],
+    v_xFF : [],
+    v_xGG : [],
+    v_xHH : [],
+    v_xII : [],
+    v_xJJ : [],
+    v_xKK : [],
+    v_xLL : [],
+    v_xMM : [],
+    v_xNN : [],
+    v_xOO : [],
 }
 
 var puntero = {
-  x : 0,
+  x : 'f_xAA',
   y : 0 
 };
 
@@ -80,6 +79,7 @@ function obj_push_sep(tamaño,frag, sep){
 }
 
 function new_push(tamaño){ 
+  if (obj_index(tamaño) == 1){
     for( var i in pagina){
       var indice = pagina[i].length;
       while(indice < 5 && tamaño > 0){
@@ -90,6 +90,11 @@ function new_push(tamaño){
       // puntero.y = indice
       } 
     }
+  }else{
+    //si no hay tamaño aca es donde sucede el swap a memoria virtual
+    //enviamos tamaño a la funcion de swap
+    swap(tamaño); 
+  }
 }
 
 function obj_index(tamaño){
@@ -99,9 +104,9 @@ function obj_index(tamaño){
   }
   
   if((tamaño + cont) > 75){
-      return  "Stack Overflow" + cont;
+      return  0
   }else{
-      return "Memory Disp" + cont ;
+      return  1
   }
 }
 
@@ -116,6 +121,35 @@ console.log(obj_index(tamaño));
 //console.log(frag + " mas " + sep );
 //var frag = fragmentar(tamaño);
 //var sep = separar(frag,tamaño)
-new_push(tamaño);
+//new_push(tamaño);
+//console.table(pagina);
+//console.table(m_pagina);
+//console.table(puntero)
+
+function swap(tamaño){ 
+    var cont = 0;
+    for( var i in pagina ){
+      var j = i; 
+      //i = puntero.x
+      var indice = pagina[j].length;
+
+      while(cont < tamaño){
+          if( indice >= 0){
+            delete pagina[i][cont];
+            cont++;
+            indice--;
+            console.log(indice)
+          }
+          else{
+          cont = cont 
+          i++;
+          }
+      }
+     break;
+   }
+}
+
+
+
+swap(tamaño);
 console.table(pagina);
-console.table(puntero)
