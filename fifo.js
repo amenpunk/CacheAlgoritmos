@@ -35,12 +35,10 @@ var m_pagina = {
 }
 
 var puntero = {
-  x : 'f_xAA',
+  x : '',
   y : 0 
 };
 
-//funcion para determinar cuantos espcaios puede ocupar 
-//por si misma
 function fragmentar(tamaño){
   var max = tamaño/5;
   switch (Math.trunc(max)){
@@ -52,8 +50,8 @@ function fragmentar(tamaño){
     return 3;
   }
 }
-//esta funcion deja el fragmento sobrante cuando es 
-//mayor a 5
+
+
 function separar(fragmento,tamaño){
   var solo = tamaño - (5*fragmento)
   return solo
@@ -116,15 +114,7 @@ var tamaño = 6
 let nombre = "$$$";
 
 console.log(obj_index(tamaño));
-//console.table(pagina)
-//pagina.uno[1]= "uno";
-//console.log(frag + " mas " + sep );
-//var frag = fragmentar(tamaño);
-//var sep = separar(frag,tamaño)
-//new_push(tamaño);
-//console.table(pagina);
-//console.table(m_pagina);
-//console.table(puntero)
+
 
 function swap(tamaño){ 
     var cont = 0;
